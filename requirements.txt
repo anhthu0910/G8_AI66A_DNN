@@ -1,0 +1,6 @@
+numpy<2
+tensorflow-macos==2.15.0; sys_platform == "darwin" and platform_machine == "arm64"
+tensorflow-metal==1.2.0; sys_platform == "darwin" and platform_machine == "arm64"
+tensorflow==2.15.0; sys_platform != "darwin" or platform_machine != "arm64"
+scikit-learn>=1.4,<2
+matplotlib>=3.8,<4

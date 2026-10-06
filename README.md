@@ -1,4 +1,36 @@
 # G8_AI66A_DNN
+
+## Model 2: Complex CNN
+
+`Models/complex_cnn.py` is the single source of truth for building, training, and
+evaluating Model 2. The notebook in `Models/` is optional for exploration; use
+the Python script for repeatable runs on both the sampled (`cut`) and full
+(`raw`) datasets.
+
+Install the project dependencies in the selected virtual environment:
+
+```bash
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+```
+
+From the repository root, run the sampled dataset first:
+
+```bash
+python -m Models.complex_cnn --dataset cut --epochs 30
+```
+
+After checking the test metrics and reports, train on the full dataset:
+
+```bash
+python -m Models.complex_cnn --dataset raw --epochs 30
+```
+
+Training saves the best validation-loss model in `saved_models/` and the
+training history, test metrics, classification report, and confusion-matrix
+plots/CSV files under `results/complex_cnn/<dataset>/`. The test split is
+evaluated only after training and is not used for model selection.
+
 # Tổng quan Dự án: So sánh các Mô hình Deep Learning trong Chẩn đoán Bệnh lý về Mắt (OCT)
 
 > **Tên đề tài:** Comparative Deep Learning Models for Human Eye Disease Prediction  
