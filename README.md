@@ -1,36 +1,4 @@
 # G8_AI66A_DNN
-
-## Model 2: Complex CNN
-
-`Models/complex_cnn.py` is the single source of truth for building, training, and
-evaluating Model 2. The notebook in `Models/` is optional for exploration; use
-the Python script for repeatable runs on both the sampled (`cut`) and full
-(`raw`) datasets.
-
-Install the project dependencies in the selected virtual environment:
-
-```bash
-source .venv/bin/activate
-python -m pip install -r requirements.txt
-```
-
-From the repository root, run the sampled dataset first:
-
-```bash
-python -m Models.complex_cnn --dataset cut --epochs 30
-```
-
-After checking the test metrics and reports, train on the full dataset:
-
-```bash
-python -m Models.complex_cnn --dataset raw --epochs 30
-```
-
-Training saves the best validation-loss model in `saved_models/` and the
-training history, test metrics, classification report, and confusion-matrix
-plots/CSV files under `results/complex_cnn/<dataset>/`. The test split is
-evaluated only after training and is not used for model selection.
-
 # Tổng quan Dự án: So sánh các Mô hình Deep Learning trong Chẩn đoán Bệnh lý về Mắt (OCT)
 
 > **Tên đề tài:** Comparative Deep Learning Models for Human Eye Disease Prediction  
@@ -55,14 +23,14 @@ Dự án được xây dựng nhằm tự động hóa quy trình phân loại �
 ## 2. Dữ liệu & Chiến lược Tiền xử lý
 
 ### 2.1. Tập dữ liệu Retinal OCT
-* **Quy mô:** Bộ dữ liệu gồm **84.495 ảnh chụp cắt lớp võng mạc** ở định dạng xám/màu độ phân giải cao, được gán nhãn y tế chuẩn mực.
+* **Quy mô:** Thư mục `data/raw` hiện có **109.309 ảnh** trong ba tập train/validation/test.
 * **Tỷ lệ phân chia:** Dữ liệu được phân chia thành 3 tập độc lập:
   * **Tập Huấn luyện (Train set):** Dùng để cập nhật trọng số cho các mô hình.
   * **Tập Kiểm định (Validation set):** Dùng để theo dõi hiện tượng quá khớp (Overfitting) và tinh chỉnh siêu tham số.
   * **Tập Kiểm thử (Test set):** Dùng để đánh giá độc lập hiệu năng cuối cùng của cả 3 mô hình.
 
 ### 2.2. Chiến lược Quản lý Dữ liệu Thực nghiệm (Data Sampling Strategy)
-Do tập dữ liệu raw có dung lượng và số lượng ảnh rất lớn (84.495 ảnh), việc huấn luyện trực tiếp ngay từ đầu sẽ tiêu tốn nhiều thời gian và chi phí tính toán. Nhóm đã áp dụng chiến lược **Chia nhỏ dữ liệu (Data Partitioning)**:
+Do tập dữ liệu raw có dung lượng và số lượng ảnh lớn, việc huấn luyện trực tiếp ngay từ đầu sẽ tiêu tốn nhiều thời gian và chi phí tính toán. Nhóm đã áp dụng chiến lược **Chia nhỏ dữ liệu (Data Partitioning)**:
 * **Tập dữ liệu nhỏ (Sampled Data):** Trích xuất một tập dữ liệu đại diện có quy mô nhỏ hơn, đặt song song với thư mục dữ liệu thô (Raw Data).
 * **Mục đích:** Giúp nhóm kiểm thử nhanh luồng mã nguồn (Data Loader, Pipeline, Architecture), phát hiện lỗi lập trình và đảm bảo mô hình hoạt động ổn định trước khi tiến hành huấn luyện quy mô lớn trên toàn bộ dữ liệu thô.
 
@@ -130,7 +98,7 @@ Nhóm đã hoàn thành việc thiết lập hạ tầng mã nguồn và đang t
 [Hoàn thiện Model 1 & 2 trên Data nhỏ]
                  │
                  ▼
-[Huấn luyện Scale-up trên Full Raw Data (84.495 ảnh)]
+[Huấn luyện Scale-up trên Full Raw Data]
                  │
                  ▼
 [Triển khai Model 3 (MobileNet Transfer Learning)]
@@ -144,3 +112,30 @@ Nhóm đã hoàn thành việc thiết lập hạ tầng mã nguồn và đang t
                  ▼
 [Hoàn thiện Báo cáo Word theo Mẫu Major_Assignment_Report]
 ```
+
+## Model 2: Complex CNN
+
+[`src/complex_cnn.py`](src/complex_cnn.py) is the source of truth for building,
+training, and evaluating Model 2 (Complex CNN).
+Install the project dependencies in the selected virtual environment:
+
+```bash
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+```
+
+The script settings are near the top of `src/complex_cnn.py`. Keep
+`DATASET = "cut"` for the initial run; `EPOCHS` can be lowered for a quick
+smoke test. From the repository root, run:
+
+```bash
+python -m src.complex_cnn
+```
+
+After the cut run is satisfactory, change `DATASET` to `"raw"` and run the
+same command to train on the full dataset.
+
+The script saves the checkpoint with the lowest validation loss to
+`saved_models/complex_cnn_<dataset>.keras`. It then prints test loss, accuracy,
+per-class precision/recall/F1-score, and the confusion matrix. The test split
+is evaluated only after training and is not used for model selection.

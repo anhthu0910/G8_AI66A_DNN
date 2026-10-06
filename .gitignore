@@ -2,3 +2,7 @@ data/*
 .venv/
 .DS_Store/
 venv/
+saved_models/
+results/
+__pycache__/
+*.py[cod]
