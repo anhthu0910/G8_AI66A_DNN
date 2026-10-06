@@ -115,27 +115,23 @@ Nhóm đã hoàn thành việc thiết lập hạ tầng mã nguồn và đang t
 
 ## Model 2: Complex CNN
 
-[`src/complex_cnn.py`](src/complex_cnn.py) is the source of truth for building,
-training, and evaluating Model 2 (Complex CNN).
-Install the project dependencies in the selected virtual environment:
+[`src/complex_cnn.ipynb`](src/complex_cnn.ipynb) is the interactive notebook
+and the main implementation for Model 2. Set up the project environment with
+TensorFlow 2.16.2 and Keras 3:
 
 ```bash
+python3 -m venv .venv
 source .venv/bin/activate
+python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 ```
 
-The script settings are near the top of `src/complex_cnn.py`. Keep
-`DATASET = "cut"` for the initial run; `EPOCHS` can be lowered for a quick
-smoke test. From the repository root, run:
+On Apple Silicon, `requirements.txt` also installs `tensorflow-metal` for GPU
+acceleration. Open the notebook, select the `.venv` kernel, then run its cells
+from top to bottom. It starts with `DATASET = "cut"`; after verifying that run,
+change it to `"raw"` in the setup cell.
 
-```bash
-python -m src.complex_cnn
-```
-
-After the cut run is satisfactory, change `DATASET` to `"raw"` and run the
-same command to train on the full dataset.
-
-The script saves the checkpoint with the lowest validation loss to
+The notebook saves the checkpoint with the lowest validation loss to
 `saved_models/complex_cnn_<dataset>.keras`. It then prints test loss, accuracy,
 per-class precision/recall/F1-score, and the confusion matrix. The test split
 is evaluated only after training and is not used for model selection.
