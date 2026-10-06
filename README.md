@@ -4,6 +4,7 @@
 > **Tên đề tài:** Comparative Deep Learning Models for Human Eye Disease Prediction  
 > **Lĩnh vực:** Thị giác máy tính (Computer Vision), Mạng nơ-ron sâu (Deep Neural Networks), Y tế số (Digital Health)  
 > **Mục tiêu:** Xây dựng, huấn luyện và so sánh hiệu năng 3 kiến trúc Deep Learning trong việc tự động phân loại 4 trạng thái bệnh lý võng mạc từ ảnh chụp cắt lớp quang học (OCT), đồng thời tích hợp mô hình tối ưu vào ứng dụng web chẩn đoán tự động.
+> **Dataset**: https://www.kaggle.com/datasets/anirudhcv/labeled-optical-coherence-tomography-oct
 
 ---
 
