@@ -45,7 +45,7 @@ Nhóm thiết kế và so sánh **3 kiến trúc mô hình** với mức độ p
 | **Đặc điểm kiến trúc** | Mạng cuộn xếp chồng tuần tự nông (2-3 lớp Conv2D + Pooling) | Mạng cuộn đa tầng nhiều khối (Multi-block CNN) kết hợp khối chức năng nâng cao | Kiến trúc MobileNet đã được huấn luyện sẵn trên tập ImageNet |
 | **Kỹ thuật chống Overfitting** | Không sử dụng hoặc chỉ có lớp Flatten/Dense cơ bản | Tích hợp **Data Augmentation** (xoay, lật, zoom), **Batch Normalization** và **Dropout** | Đóng đóng các lớp trích xuất đặc trưng (Frozen Base) và chỉ huấn luyện Custom MLP Head |
 | **Mục đích thử nghiệm** | Tạo mô hình cơ sở (Baseline) để đánh giá ngưỡng hiệu năng tối thiểu | Tối ưu hóa khả năng trích xuất đặc trưng sâu từ đầu mà không dùng tri thức bên ngoài | Tận dụng tri thức học sẵn để đạt độ chính xác cao nhất với thời gian huấn luyện ngắn |
-| **Phân công đảm nhận** | Bạn Thư đảm nhận triển khai | Thành viên đảm nhận triển khai | Cả nhóm phối hợp tinh chỉnh (Fine-tuning) |
+| **Phân công đảm nhận** | Thư đảm nhận triển khai | Lân đảm nhận triển khai | Cả nhóm phối hợp tinh chỉnh (Fine-tuning) |
 
 ---
 
@@ -126,8 +126,7 @@ python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 ```
 
-On Apple Silicon, `requirements.txt` also installs `tensorflow-metal` for GPU
-acceleration. Open the notebook, select the `.venv` kernel, then run its cells
+Open the notebook, select the `.venv` kernel, then run its cells
 from top to bottom. It starts with `DATASET = "cut"`; after verifying that run,
 change it to `"raw"` in the setup cell.
 
