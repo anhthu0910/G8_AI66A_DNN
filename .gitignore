@@ -2,3 +2,8 @@ data/*
 .venv/
 .DS_Store/
 path/to/venv
+venv/
+saved_models/
+results/
+__pycache__/
+*.py[cod]
