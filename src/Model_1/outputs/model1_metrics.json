@@ -1,0 +1,19 @@
+{
+  "model": "Model 1 - Simple CNN",
+  "params": 8483140,
+  "img_size": 128,
+  "epochs_run": 30,
+  "train_time_min": 0.5,
+  "best_val_loss": 0.856631132364273,
+  "test_accuracy": 0.62,
+  "test_macro_precision": 0.5285714285714286,
+  "test_macro_recall": 0.5260232961656617,
+  "test_macro_f1": 0.5082485281749369,
+  "test_weighted_f1": 0.6621175777964676,
+  "classes": [
+    "CNV",
+    "DME",
+    "DRUSEN",
+    "NORMAL"
+  ]
+}
