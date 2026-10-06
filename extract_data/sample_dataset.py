@@ -10,7 +10,7 @@ SPLITS = ("train", "val", "test")
 
 def main():
     parser = argparse.ArgumentParser(description="Create a smaller, stratified image dataset.")
-    parser.add_argument("--total", type=int, default=10_000, help="Total number of images to copy.")
+    parser.add_argument("--total", type=int, default=1_000, help="Total number of images to copy.")
     parser.add_argument("--seed", type=int, default=42, help="Seed for reproducible sampling.")
     args = parser.parse_args()
 
