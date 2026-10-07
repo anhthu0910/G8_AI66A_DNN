@@ -114,11 +114,32 @@ Nhóm đã hoàn thành việc thiết lập hạ tầng mã nguồn và đang t
 [Hoàn thiện Báo cáo Word theo Mẫu Major_Assignment_Report]
 ```
 
-## Model 2: Complex CNN
+## Model 2: CNN architecture comparison
 
-[`src/complex_cnn.ipynb`](src/complex_cnn.ipynb) is the interactive notebook
-and the main implementation for Model 2. Set up the project environment with
-TensorFlow 2.16.2 and Keras 3:
+The Model 2 architecture baselines and their class-weighted experiments are
+independent notebooks in
+[`src/Model_2/src/`](src/Model_2/src/):
+
+| Baseline | Class-weighted experiment | Architecture |
+| --- | --- | --- |
+| [`complex_cnn.ipynb`](src/Model_2/src/complex_cnn.ipynb) | [`complex_cnn_balanced.ipynb`](src/Model_2/src/complex_cnn_balanced.ipynb) | Sequential CNN |
+| [`parallel_cnn.ipynb`](src/Model_2/src/parallel_cnn.ipynb) | [`parallel_cnn_balanced.ipynb`](src/Model_2/src/parallel_cnn_balanced.ipynb) | Parallel branches merged with concatenation |
+| [`residual_cnn.ipynb`](src/Model_2/src/residual_cnn.ipynb) | [`residual_cnn_balanced.ipynb`](src/Model_2/src/residual_cnn_balanced.ipynb) | CNN blocks with residual skip connections |
+
+Baseline notebooks share the same data splits, image size, batch size,
+augmentation, optimizer, epoch limit and early-stopping settings. The balanced
+variants retain each baseline architecture and data pipeline, add inverse-
+frequency class weights computed from the training split, allow up to 40
+epochs, and reduce the learning rate when validation loss plateaus. These are
+experimental settings, not guaranteed improvements. Run one notebook at a
+time, first with `DATASET = "cut"` to verify the pipeline, then with
+`DATASET = "raw"` for comparison. Compare macro F1 and per-class recall as well
+as accuracy. Each model writes its Keras checkpoint, Model 1-compatible
+metrics JSON and training-history CSV, confusion-matrix CSV, and training-
+curves/confusion-matrix PNGs into
+[`src/Model_2/outputs/`](src/Model_2/outputs/), using a model-specific filename.
+
+Set up the project environment with TensorFlow 2.16.2 and Keras 3:
 
 ```bash
 python3 -m venv .venv
@@ -127,11 +148,9 @@ python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 ```
 
-Open the notebook, select the `.venv` kernel, then run its cells
-from top to bottom. It starts with `DATASET = "cut"`; after verifying that run,
-change it to `"raw"` in the setup cell.
-
-The notebook saves the checkpoint with the lowest validation loss to
-`saved_models/complex_cnn_<dataset>.keras`. It then prints test loss, accuracy,
-per-class precision/recall/F1-score, and the confusion matrix. The test split
-is evaluated only after training and is not used for model selection.
+Open the notebooks with the `.venv` kernel and run each from top to bottom.
+The best checkpoint is selected by validation loss; the held-out test split
+is used only for final evaluation. The architectures use standard course CNN
+layers, with concatenation for parallel branches and addition for residual
+shortcuts. Keep the original notebooks as baselines and retain a balanced
+variant only if it performs better on the agreed raw-data evaluation metrics.
