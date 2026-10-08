@@ -37,26 +37,26 @@ Tài liệu này lưu cấu trúc và kết quả của từng lần chạy đ�
 | Epoch | Tối đa 30; lần chạy ghi nhận đủ 30 epoch |
 | Chọn checkpoint | Validation loss thấp nhất; best checkpoint được lưu tại `src/Model_1/outputs/model1_simple_cnn.pt` |
 
-### Kết quả baseline
+### Kết quả lần chạy hiện tại
 
 | Metric | Kết quả |
 |---|---:|
 | Số tham số | 8,483,140 |
-| Best validation loss | 0.8566 |
-| Test accuracy | 0.6200 (62.00%) |
-| Test macro precision | 0.5286 |
-| Test macro recall | 0.5260 |
-| Test macro-F1 | 0.5082 |
-| Test weighted-F1 | 0.6621 |
-| Thời gian huấn luyện | 0.50 phút |
+| Best validation loss | 0.1673 |
+| Test accuracy | 0.9441 (94.41%) |
+| Test macro precision | 0.8960 |
+| Test macro recall | 0.9182 |
+| Test macro-F1 | 0.9062 |
+| Test weighted-F1 | 0.9449 |
+| Thời gian huấn luyện | 38.77 phút |
 
-Các kết quả trên là mốc tham chiếu, không phải cam kết hiệu năng khi chạy lại. Lịch sử train/validation nằm ở `src/Model_1/outputs/model1_history.csv`; metrics đã lưu nằm ở `src/Model_1/outputs/model1_metrics.json`.
+Các metric được cập nhật từ lần chạy mới nhất và lưu tại `src/Model_1/outputs/model1_metrics.json`. Lịch sử train/validation nằm ở `src/Model_1/outputs/model1_history.csv`.
 
 ## Bảng so sánh tổng quan
 
 | Model | Kiến trúc / thay đổi chính | Tham số | Best val loss | Test accuracy | Macro-F1 | Weighted-F1 | Thời gian (phút) | Ghi chú |
 |---|---|---:|---:|---:|---:|---:|---:|---|
-| Cấu trúc 1 | 3 Conv blocks (32/64/128), FC 256, Dropout 0.5 | 8,483,140 | 0.8566 | 0.6200 | 0.5082 | 0.6621 | 0.50 | Baseline; 128 × 128, 30 epoch |
+| Cấu trúc 1 | 3 Conv blocks (32/64/128), FC 256, Dropout 0.5 | 8,483,140 | 0.1673 | 0.9441 | 0.9062 | 0.9449 | 38.77 | 128 × 128, 30 epoch |
 | Cấu trúc 2 | Điền sau khi chạy |  |  |  |  |  |  |  |
 | Cấu trúc 3 | Điền sau khi chạy |  |  |  |  |  |  |  |
 
