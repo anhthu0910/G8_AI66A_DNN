@@ -56,9 +56,9 @@ Các kết quả trên là mốc tham chiếu, không phải cam kết hiệu n�
 
 | Model | Kiến trúc / thay đổi chính | Tham số | Best val loss | Test accuracy | Macro-F1 | Weighted-F1 | Thời gian (phút) | Ghi chú |
 |---|---|---:|---:|---:|---:|---:|---:|---|
-| Model 1 - Simple CNN | 3 Conv blocks (32/64/128), FC 256, Dropout 0.5 | 8,483,140 | 0.8566 | 0.6200 | 0.5082 | 0.6621 | 0.50 | Baseline; 128 × 128, 30 epoch |
-| Model 2 | Điền sau khi chạy |  |  |  |  |  |  |  |
-| Model 3 | Điền sau khi chạy |  |  |  |  |  |  |  |
+| Cấu trúc 1 | 3 Conv blocks (32/64/128), FC 256, Dropout 0.5 | 8,483,140 | 0.8566 | 0.6200 | 0.5082 | 0.6621 | 0.50 | Baseline; 128 × 128, 30 epoch |
+| Cấu trúc 2 | Điền sau khi chạy |  |  |  |  |  |  |  |
+| Cấu trúc 3 | Điền sau khi chạy |  |  |  |  |  |  |  |
 
 Để so sánh công bằng, giữ cố định train/val/test split, preprocessing, seed và cách chọn checkpoint; chỉ thay đổi kiến trúc hoặc yếu tố thực nghiệm cần đánh giá. Ghi rõ mọi thay đổi cấu hình trong cột ghi chú.
 
