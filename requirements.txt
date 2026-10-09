@@ -1,5 +1,6 @@
 numpy<2
-tensorflow==2.16.2
+tensorflow[and-cuda]==2.16.2; sys_platform == "linux"
+tensorflow==2.16.2; sys_platform != "linux"
 tensorflow-metal==1.2.0; sys_platform == "darwin" and platform_machine == "arm64"
 scikit-learn>=1.4,<2
 matplotlib>=3.8,<4
