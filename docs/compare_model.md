@@ -112,7 +112,7 @@ Mỗi residual block tính một biến đổi bằng các lớp tích chập r�
 - **Hạn chế:** cần căn chỉnh kích thước/kênh giữa hai nhánh; nhiều block làm tăng chi phí tính toán. Kết nối tắt không đảm bảo mô hình thắng nếu dữ liệu và siêu tham số chưa phù hợp.
 - **Kết quả lần chạy:** accuracy 0.9535, macro-F1 0.9251 và best validation loss 0.1371. Trong ba mô hình Keras, đây là kết quả tốt nhất theo accuracy và macro-F1, nhưng thời gian đã ghi nhận rất lâu: 856.28 phút.
 
-### 4. ResNet nhỏ tự thiết kế — `Model2_ResNet.ipynb`
+### 4. ResNet nhỏ `Model2_ResNet.ipynb`
 
 Đây cũng là CNN residual nhưng được cài bằng PyTorch. Mô hình có stem tích chập, các stage gồm ResBlock với BatchNorm và skip connection, rồi Global Average Pooling và lớp phân loại. Cấu hình lần chạy bật class weights, label smoothing, AdamW, OneCycleLR và mixed precision trên GPU NVIDIA.
 
@@ -136,13 +136,9 @@ Sự khác nhau có thể đến từ nhiều yếu tố cùng lúc, không ch�
 
 Do các lần chạy khác nhau về độ phân giải, số lượng test, framework và cấu hình huấn luyện, bảng hiện tại là **so sánh kết quả thực nghiệm của các cấu hình đã chạy**, chưa phải thí nghiệm cô lập tác động của riêng kiến trúc. Muốn kết luận công bằng hơn, cần cố định cùng split, độ phân giải, tiền xử lý/augmentation, seed, batch size, số epoch và quy tắc chọn checkpoint; sau đó chỉ thay kiến trúc, tốt nhất chạy nhiều seed và báo cáo trung bình.
 
-### File nên giữ lại
-
 Giữ [`Model2_ResNet.ipynb`](../src/Model_2/src/Model2_ResNet.ipynb): trong bốn lần chạy này, nó có accuracy và macro-F1 cao nhất, đồng thời thời gian chạy được ghi nhận là 84.8 phút. Kiến trúc dùng các residual block tiêu chuẩn (`ResBlock` và `ResNetSmall`) với BatchNorm và skip connection; notebook có các mục giải thích theo từng bước. Đây không phải mô hình đơn giản nhất, nhưng là lựa chọn tốt nhất khi cân bằng kết quả và khả năng giải thích trong bốn lần chạy đã có.
 
 Lưu ý: `Model2_ResNet.ipynb` dùng ảnh 128 × 128 và tập test có 10,848 ảnh; ba notebook Keras dùng ảnh 224 × 224 và tập test có 10,933 ảnh. Vì vậy, các điểm số hiện tại không phải so sánh hoàn toàn cùng điều kiện và chưa chứng minh chênh lệch chỉ đến từ kiến trúc. Notebook ResNet hiện yêu cầu GPU NVIDIA CUDA; không chạy trực tiếp được trên Mac không có CUDA.
-
-Các file kết quả và checkpoint của những lần chạy khác được giữ lại trong `src/Model_2/outputs/` để tham khảo; chỉ giữ một notebook mã nguồn Model 2 làm bản chính.
 
 ---
 
